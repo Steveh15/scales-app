@@ -143,22 +143,23 @@
         document.getElementById("motion").innerText = "" ;
       }
 
-      document.getElementById("counter").innerText = currentItemIndex+1 + " / " + exercises.length ;
+      document.getElementById("counter").innerText = currentItemIndex + 1 + " / " + exercises.length ;
     }
 
     function generateExercises(){
 
 
         // Make scales
-
       scales = JSON.parse(JSON.stringify(_.sample(keys, 9)));
+
+
       for (x of scales) {
 
         x.exercise = "scale"
         x.articulation = "Legato"
         x.motion = "Similar"
 
-        if(x.key = "minor"){
+        if(x.key == "minor"){
           if(Math.random() < 0.5){
             x.key  = "harmonic minor"
           }
@@ -181,9 +182,9 @@
       scales[rand_n[4]].motion = "Contrary"
       scales[rand_n[5]].motion = "Contrary"
 
-      if(scales[rand_n[3]].key = "melodic minor") { scales[rand_n[3]].key = "harmonic minor";}
-      if(scales[rand_n[4]].key = "melodic minor") { scales[rand_n[4]].key = "harmonic minor";}
-      if(scales[rand_n[5]].key = "melodic minor") { scales[rand_n[5]].key = "harmonic minor";}
+      if(scales[rand_n[3]].key == "melodic minor") { scales[rand_n[3]].key = "harmonic minor";}
+      if(scales[rand_n[4]].key == "melodic minor") { scales[rand_n[4]].key = "harmonic minor";}
+      if(scales[rand_n[5]].key == "melodic minor") { scales[rand_n[5]].key = "harmonic minor";}
 
 
         // Make Arpeggios
@@ -232,6 +233,10 @@
 
       exercises = _.shuffle(exercises);
 
+
+      var test = [1,2,3,4,5];
+
+      console.log(_.sample(test,4));
 
 
     }

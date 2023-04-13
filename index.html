@@ -169,6 +169,8 @@
       }
 
 
+      // Choose 3 scales to be staccato, choose another 3 to be contrary motion
+
       rand_n = _.sample([0,1,2,3,4,5,6,7,8], 6);
 
       scales[rand_n[0]].articulation = "Staccato"
@@ -178,6 +180,10 @@
       scales[rand_n[3]].motion = "Contrary"
       scales[rand_n[4]].motion = "Contrary"
       scales[rand_n[5]].motion = "Contrary"
+
+      if(scales[rand_n[3]].key = "melodic minor") { scales[rand_n[3]].key = "harmonic minor";}
+      if(scales[rand_n[4]].key = "melodic minor") { scales[rand_n[3]].key = "harmonic minor";}
+      if(scales[rand_n[5]].key = "melodic minor") { scales[rand_n[3]].key = "harmonic minor";}
 
 
         // Make Arpeggios
@@ -218,15 +224,16 @@
         chrom.articulation  = "Staccato"
       }
 
-      exercises = _.shuffle(scales.concat(arpeggios).concat(chrom).concat(arpeggios_dom));
 
-
-
+      exercises = scales.concat(arpeggios).concat(chrom).concat(arpeggios_dom);
 
       console.log("The following scales have been generated:")
       console.log(exercises)
-        // console.log(keys)
-        // console.log(arpeggios)
+
+      exercises = _.shuffle(exercises);
+
+
+
     }
 
     function backButton(){

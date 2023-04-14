@@ -81,25 +81,18 @@
 
     const major_keys = [
           // {note: "C", key: "major"},
-          // {note: "C", key: "minor"},
-          // {note: "D♭", key: "major"},
+      {note: "D♭", key: "major"},
       {note: "D", key: "major"},
           // {note: "E♭", key: "major"},
-          // {note: "E♭", key: "minor"},
-          // {note: "E", key: "major"},
+      {note: "E", key: "major"},
       {note: "F", key: "major"},
           // {note: "F♯", key: "major"},
-          // {note: "F♯", key: "minor"},
-          // {note: "G", key: "major"},
+      {note: "G", key: "major"},
       {note: "A♭", key: "major"},
           // {note: "A", key: "major"},
-          // {note: "A", key: "minor"},
-          // {note: "B♭", key: "major"},
+      {note: "B♭", key: "major"},
       {note: "B", key: "major"},
       ]
-
-    var exercises = []
-    var arpeggios = []
 
 
     function showNextItem() {
@@ -226,17 +219,13 @@
       }
 
 
-      exercises = scales.concat(arpeggios).concat(chrom).concat(arpeggios_dom);
+      exercises = _.shuffle(scales).concat(chrom).concat(_.shuffle(arpeggios)).concat(_.shuffle(arpeggios_dom));
 
       console.log("The following scales have been generated:")
       console.log(exercises)
 
-      exercises = _.shuffle(exercises);
+      // exercises = _.shuffle(exercises);
 
-
-      var test = [1,2,3,4,5];
-
-      console.log(_.sample(test,4));
 
 
     }

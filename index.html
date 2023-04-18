@@ -32,6 +32,7 @@
               <span id="exercise"> </span>
               <div id="motion"> </div>
               <div id="articulation"> </div>
+              <div id="fingering"> </div>
               <h1 id="counter"> </h1>
 
             </div>
@@ -75,6 +76,34 @@
           // {note: "A", key: "minor"},
       {note: "B♭", key: "major"},
       {note: "B♭", key: "minor"},
+      {note: "B", key: "major"},
+      {note: "B", key: "minor"}
+      ]
+
+
+      const arpeggios = [
+          // {note: "C", key: "major"},
+          // {note: "C", key: "minor"},
+      {note: "D♭", key: "major", fingering: "RH - 2, 1 2 4, 1 2 4. LH - 3 2 1, 3 2 1, 2"},
+      {note: "C♯", key: "minor", fingering: "RH - 2, 1 2 4, 1 2 4. LH - 3 2 1, 3 2 1, 2"},
+      {note: "D", key: "major"},
+      {note: "D", key: "minor"},
+          // {note: "E♭", key: "major"},
+          // {note: "E♭", key: "minor"},
+      {note: "E", key: "major"},
+      {note: "E", key: "minor"},
+      {note: "F", key: "major"},
+      {note: "F", key: "minor"},
+          // {note: "F♯", key: "major"},
+          // {note: "F♯", key: "minor"},
+      {note: "G", key: "major"},
+      {note: "G", key: "minor"},
+      {note: "A♭", key: "major"},
+      {note: "G♯", key: "minor"},
+          // {note: "A", key: "major"},
+          // {note: "A", key: "minor"},
+      {note: "B♭", key: "major", fingering: "RH - 2, 1 2 4, 1 2 4. LH - 3 2 1, 3 2 1, 2"},
+      {note: "B♭", key: "minor", fingering: "RH - 2, 1 2 3, 1 2 3. LH - 3 2 1, 3 2 1, 2"},
       {note: "B", key: "major"},
       {note: "B", key: "minor"}
       ]
@@ -136,6 +165,12 @@
         document.getElementById("motion").innerText = "" ;
       }
 
+      if(exercises[currentItemIndex].fingering){
+        document.getElementById("fingering").innerText = exercises[currentItemIndex].fingering;
+      }else{
+        document.getElementById("fingering").innerText = "" ;
+      }
+
       document.getElementById("counter").innerText = currentItemIndex + 1 + " / " + exercises.length ;
     }
 
@@ -182,10 +217,10 @@
 
         // Make Arpeggios
 
-      arpeggios = JSON.parse(JSON.stringify(_.sample(keys, 6)));
+      arpeggios_rand = JSON.parse(JSON.stringify(_.sample(arpeggios, 7)));
 
 
-      for( x of arpeggios){
+      for( x of arpeggios_rand){
         x.exercise = "arpeggio"
         x.articulation = "Legato"
         x.motion = ""
@@ -219,7 +254,7 @@
       }
 
 
-      exercises = _.shuffle(scales).concat(chrom).concat(_.shuffle(arpeggios)).concat(_.shuffle(arpeggios_dom));
+      exercises = _.shuffle(scales).concat(chrom).concat(_.shuffle(arpeggios_rand)).concat(_.shuffle(arpeggios_dom));
 
       console.log("The following scales have been generated:")
       console.log(exercises)

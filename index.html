@@ -137,7 +137,7 @@
 
     let saved_exercises = JSON.parse(window.localStorage.getItem("storedExercises"));
 
-    if(saved_exercises.length == 0){
+    if(saved_exercises == null || saved_exercises.length == 0){
         document.getElementById("load-saved-button").setAttribute("disabled", "");
     }
 

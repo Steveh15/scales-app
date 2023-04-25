@@ -54,6 +54,7 @@
           <div class="card-body text-center" id = "button-card" >
             <div class="card-body text-center" > <button class="btn btn-primary" id="load-button" onclick="loadExercises()">Generate New Exercises</button></div>
             <div class="card-body text-center" > <button class="btn btn-primary" id="load-saved-button" onclick="loadSavedExercises()">Practice Saved Scales</button></div>
+            <div class="card-body text-center" > <button class="btn btn-primary" id="load-button" onclick="removeAllExercises()">Remove All Exercises</button></div>
           </div>
 
         </div>
@@ -135,11 +136,15 @@
       ]
 
 
-    if(window.localStorage.getItem("storedExercises") != null){
-        let saved_exercises = JSON.parse(window.localStorage.getItem("storedExercises"));
+
+    let saved_exercises = [];
+
+    if(window.localStorage.getItem("storedExercises") == null){
+      console.log("No saved exercises")
+        saved_exercises = [];
     }
     else{
-      saved_exercises = [];
+        saved_exercises = JSON.parse(window.localStorage.getItem("storedExercises"));
     }
 
     
@@ -148,6 +153,9 @@
         document.getElementById("load-saved-button").setAttribute("disabled", "");
     }
 
+    function removeAllExercises(){
+      window.localStorage.removeItem("storedExercises")
+    }
 
     function removeExercise(){
       exercises.splice(currentItemIndex, currentItemIndex+1);

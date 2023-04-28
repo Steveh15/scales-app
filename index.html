@@ -141,16 +141,16 @@
 
     if(window.localStorage.getItem("storedExercises") == null){
       console.log("No saved exercises")
-        saved_exercises = [];
+      saved_exercises = [];
     }
     else{
-        saved_exercises = JSON.parse(window.localStorage.getItem("storedExercises"));
+      saved_exercises = JSON.parse(window.localStorage.getItem("storedExercises"));
     }
 
     
 
     if(saved_exercises.length == 0){
-        document.getElementById("load-saved-button").setAttribute("disabled", "");
+      document.getElementById("load-saved-button").setAttribute("disabled", "");
     }
 
     function removeAllExercises(){
@@ -245,7 +245,21 @@
 
   function displayExercise(){
 
-    if(saved_exercises.includes(exercises[currentItemIndex])){
+
+    // Check if we have this exercise already
+
+    var already_saved = false;
+    for (x of saved_exercises) {
+      if  (exercises[currentItemIndex].note == x.note &&
+        exercises[currentItemIndex].key == x.key &&
+        exercises[currentItemIndex].exercise == x.exercise &&
+        exercises[currentItemIndex].articulation == x.articulation &&
+        exercises[currentItemIndex].motion == x.motion)
+        { already_saved = true}
+
+    }
+
+    if(already_saved){
       document.getElementById("save-button").setAttribute("disabled", "");
     } else{
       document.getElementById("save-button").removeAttribute("disabled");
@@ -285,9 +299,9 @@
   function generateExercises(){
 
 
-      var scales_n = 10;
-      var arp_n = 8;
-      var dom7_n = 3;
+    var scales_n = 10;
+    var arp_n = 8;
+    var dom7_n = 3;
 
 
     // var scales_n = 7;

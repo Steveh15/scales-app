@@ -299,7 +299,7 @@
   function generateExercises(){
 
 
-    var scales_n = 10;
+    var scales_n = 9;
     var arp_n = 8;
     var dom7_n = 3;
 
@@ -313,7 +313,6 @@
         // Make scales
     scales = JSON.parse(JSON.stringify(_.sample(keys, scales_n)));
 
-
     for (x of scales) {
 
       x.exercise = "scale"
@@ -321,6 +320,7 @@
       x.motion = "Similar"
 
       if(x.key == "minor"){
+        x.order = 1;
         if(Math.random() < 0.5){
           x.key  = "harmonic minor"
         }
@@ -333,21 +333,16 @@
 
       // Choose 3 scales to be staccato, choose another 3 to be contrary motion
 
+    // rand_n = Array.from(Array(scales_n).keys());
 
-      // rand_n = _.sample([0,1,2,3,4,5,6,7,8], 6);
-    rand_n = Array.from(Array(scales_n).keys());
 
-    scales[rand_n[0]].articulation = "Staccato"
-    scales[rand_n[1]].articulation = "Staccato"
-    scales[rand_n[2]].articulation = "Staccato"
+    for( let i = 0; i < 3; i++ ){
+      scales[(scales_n-1)-i].articulation = "Contrary"
+      if(scales[(scales_n-1)-i].key == "melodic minor") { scales[(scales_n-1)-i].key = "harmonic minor";}
 
-    scales[rand_n[3]].motion = "Contrary"
-    scales[rand_n[4]].motion = "Contrary"
-    scales[rand_n[5]].motion = "Contrary"
+      scales[(scales_n-4)-i].articulation = "Staccato"
 
-    if(scales[rand_n[3]].key == "melodic minor") { scales[rand_n[3]].key = "harmonic minor";}
-    if(scales[rand_n[4]].key == "melodic minor") { scales[rand_n[4]].key = "harmonic minor";}
-    if(scales[rand_n[5]].key == "melodic minor") { scales[rand_n[5]].key = "harmonic minor";}
+    }
 
 
         // Make Arpeggios
@@ -389,7 +384,7 @@
     }
 
 
-    exercises = _.shuffle(scales).concat(chrom).concat(_.shuffle(arpeggios_rand)).concat(_.shuffle(arpeggios_dom));
+    exercises = scales.concat(chrom).concat(_.shuffle(arpeggios_rand)).concat(_.shuffle(arpeggios_dom));
 
     console.log("The following scales have been generated:")
     console.log(exercises)
